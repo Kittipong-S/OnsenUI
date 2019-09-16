@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <style>
+            #mypage .page__background {
+                background-color: aqua
+            }
+        </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App</title>
+
+    <script src="../OnsenUI-dist-2.10.10/js/onsenui.js"></script>
+    <link rel="stylesheet" href="../OnsenUI-dist-2.10.10/css/old-onsen-css-components.min.css">
+    <link rel="stylesheet" href="../OnsenUI-dist-2.10.10/css/onsenui.css">
+
+</head>
+
+<body>
+    <ons-page id='mypage'>
+    <div class="toolbar">
+        <div class="toolbar__left">
+            <span class="toolbar-button">
+                <span class="toolbar-button">Back</span>
+            </span>
+        </div>
+
+        <div class="toolbar__center">
+           Menu
+        </div>
+
+        <div class="toolbar__right">
+            <span class="toolbar-button"></span>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+        <div class="card">
+                <li class="list-item">
+                        <div class="list-item__left">
+                          <img class="list-item__thumbnail" src="http://www.iconsalot.com/asset/icons/freepik/food-and-drink-1/128/039-noodle-icon.png">
+                        </div>
+                    
+                        <div class="list-item__center">
+                          <div class="list-item__title">The Noodle</div>
+                          <div class="list-item__subtitle">Min Delivery : $25 / Open</div>
+                        </div>
+                    
+                      </li>
+
+            <ul class="list">
+                <div style="text-align: center; margin-top: 20px;">
+                <ons-list-title>Menu</ons-list-title>
+            </div>
+                <li class="list-item">
+
+
+                    <div class="list-item__center">
+                        <div class="list-item__title">Chicken Soup</div>
+                        <div class="list-item__subtitle">Served with all salad</div>
+                    </div>
+
+                    <div class="list-item__right">
+                        <i class=" list-item__icon">$12</i>
+                        <ons-button modifier="light">+</ons-button>
+                    </div>
+                </li>
+
+                <li class="list-item">
+
+
+                    <div class="list-item__center">
+                        <div class="list-item__title">Chicken Chowmein</div>
+                        <div class="list-item__subtitle">Served with all salad</div>
+                    </div>
+
+                    <div class="list-item__right">
+                        <i class=" list-item__icon">$20</i>
+                        <ons-button modifier="light">+</ons-button>
+                    </div>
+                </li>
+                <li class="list-item">
+
+
+                    <div class="list-item__center">
+                        <div class="list-item__title">Beef Noodle Specail Sauce</div>
+                        <div class="list-item__subtitle">Served with chip</div>
+                    </div>
+
+                    <div class="list-item__right">
+                        <i class=" list-item__icon">$36</i>
+                        <ons-button modifier="light">+</ons-button>
+                    </div>
+                </li>
+                <li class="list-item">
+
+                    <div class="list-item__center">
+                        <div class="list-item__title">The Prawn Noodle Bowl </div>
+                        <div class="list-item__subtitle">Served with all salad</div>
+                    </div>
+
+                    <div class="list-item__right">
+                        <i class=" list-item__icon">$9</i>
+                        <ons-button modifier="light">+</ons-button>
+                    </div>
+                </li>
+                <div style="text-align: center; margin-top: 30px;">
+                </div>
+                <li class="list-item">
+
+                        <div class="list-item__center">
+                            <div class="list-item__title">Drink</div>
+                        </div>
+    
+                        <div class="list-item__right">
+
+                            <ons-button >+</ons-button>
+                        </div>
+                    </li>
+
+                    <li class="list-item">
+
+                            <div class="list-item__center">
+                                <div class="list-item__title">Desserts</div>
+                            </div>
+        
+                            <div class="list-item__right">
+    
+                                <ons-button >+</ons-button>
+                            </div>
+                        </li>
+
+                <div>
+
+                </div>
+            </ul>
+           
+        </div>
+    </div>
+
+    <div class="tabbar">
+            
+          
+            <label class="tabbar__item">
+              <input type="radio" name="tabbar-c">
+              <button class="tabbar__button">
+                <div class="tabbar__label" style="color:blue">Your Order : $34</div>
+              </button>
+            </label>
+            <label class="tabbar__item">
+                    <input type="radio" name="tabbar-c">
+                    <button class="tabbar__button">
+                            <ons-button modifier="quiet">Order</ons-button>
+                    </button>
+                  </label>
+            
+          </div>
+</ons-page>
+</body>
+
+</html>

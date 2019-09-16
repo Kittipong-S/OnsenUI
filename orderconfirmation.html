@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <style>
+                #mypage .page__background {
+                    background-color: yellow 
+                }
+            </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App</title>
+
+    <script src="../OnsenUI-dist-2.10.10/js/onsenui.js"></script>
+    <link rel="stylesheet" href="../OnsenUI-dist-2.10.10/css/old-onsen-css-components.min.css">
+    <link rel="stylesheet" href="../OnsenUI-dist-2.10.10/css/onsenui.css">
+</head>
+
+<body>
+    <ons-page id='mypage'>
+        <div class="toolbar">
+            <div class="toolbar__left">
+                <span class="toolbar-button">
+                    <span class="toolbar-button">Back</span>
+                </span>
+            </div>
+
+            <div class="toolbar__center">
+               Confirm
+            </div>
+
+            <div class="toolbar__right">
+                <span class="toolbar-button"></span>
+            </div>
+        </div>
+        <ons-row>
+            <ons-col class="card" id="menu-card" style="width: 150px; height: 130px; text-align: center;">
+                <img style="width:50px; height: 50px;"
+                    src="http://www.iconsalot.com/asset/icons/freepik/food-and-drink-1/128/039-noodle-icon.png">
+                <div>
+                    <div class="list-item__title">The Noodle</div>
+                    <div class="list-item__subtitle">Your Order is below</div>
+                </div>
+            </ons-col>
+        </ons-row>
+
+        <div style="height: 200px; padding: 1px 0 0 0;">
+            <li class="list-item">
+                <div class="list-item__center">
+                    <div class="list-item__title">1.Chicken Chowmein</div>
+                </div>
+                <div class="list-item__right">
+                    <i>$30</i>
+                </div>
+            </li>
+            <li class="list-item">
+                <div class="list-item__center">
+                    <div class="list-item__title">2.Beef Stir Fry </div>
+                </div>
+                <div class="list-item__right">
+                    <i>$10</i>
+                </div>
+            </li>
+            <li class="list-item">
+                <div class="list-item__center">
+                    <div class="list-item__title">Soft Drinks(Coke)</div>
+                </div>
+                <div class="list-item__right">
+                    <i>$8.5</i>
+                </div>
+            </li>
+        </div>
+        <section>
+            <center>
+                <ons-text>Total : $48.5</ons-text>
+            </center>
+        </section>
+        <section style="padding: 8px"></section>
+        <center>
+            <ons-button modifier="">Enter coupon if you have any</ons-button>
+        </center>
+        </section>
+        <center>
+            <div>
+                <p> Pay Via </p>
+            </div>
+        </center>
+        <section style="padding: 8px"></section>
+        <center>
+            <ons-button style="background-color:brown ; color :black ">Cradit Card</ons-button>
+        </center>
+        </section>
+        <center>
+            <div>
+                <section style="padding: 8px"></section>
+                <center>
+                    <ons-button style="background-color:aqua ; color :black ">PayPal</ons-button>
+                </center>
+                </section>
+                <center>
+                    <div>
+                        <section style="padding: 8px "></section>
+                        <center>
+                            <ons-button style="background-color:chartreuse ; color :black " >Cash on Delivery</ons-button>
+                        </center>
+                        </section>
+                        <center>
+                            <div>
+
+
+    </ons-page>
+</body>
+
+</html>
