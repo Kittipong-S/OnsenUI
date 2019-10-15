@@ -1,47 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<ons-page id="register">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>App</title>
+    <div style="text-align: center; margin-top: 150px;">
+        <div class="card">
 
-    <script src="../OnsenUI-dist-2.10.10/js/onsenui.js"></script>
-    <link rel="stylesheet" href="../OnsenUI-dist-2.10.10/css/old-onsen-css-components.min.css">
-    <link rel="stylesheet" href="../OnsenUI-dist-2.10.10/css/onsenui.css">
+            <div style="text-align: center; margin-top: 30px;">
+                <h2>Register</h2>
+                <p>
+                    <ons-input id="username" modifier="underbar" placeholder="Full Name " float></ons-input>
+                </p>
+                <p>
+                    <ons-input id="password" modifier="underbar" type="Email" placeholder="Email" float>
+                    </ons-input>
+                </p>
+                <p>
+                    <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float>
+                    </ons-input>
+                </p>
+                <p>
+                    <ons-input id="password" modifier="underbar" type="text" placeholder="Phonenumber" float>
+                    </ons-input>
+                </p>
+                <p style="margin-top: 30px;">
+                    <ons-button style="background-color: darkgreen">Confirm</ons-button>
+                    <ons-button style="background-color: darkred">Cancel</ons-button>
+                </p>
+            </div>
 
-</head>
-
-<body background="https://www.byrdie.com/thmb/XNXtzeUCx68om3ajudAXviXzAsc=/796x700/filters:no_upscale():max_bytes(150000):strip_icc()/cdn.cliqueinc.com__cache__posts__265806__undefined-265806-1534881188861-main.700x0c-e308d0867d5f4b9bad2536f91850bec9.jpg">
-    
-        
-            <div style="text-align: center; margin-top: 150px;">
-            <div class="card">
-
-                <div style="text-align: center; margin-top: 30px;">
-                    <h2>Register</h2>
-                    <p>
-                        <ons-input id="username" modifier="underbar" placeholder="Full Name " float></ons-input>
-                    </p>
-                    <p>
-                        <ons-input id="password" modifier="underbar" type="Email" placeholder="Email" float>
-                        </ons-input>
-                    </p>
-                    <p>
-                        <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float>
-                        </ons-input>
-                    </p>
-                    <p>
-                        <ons-input id="password" modifier="underbar" type="text" placeholder="Phonenumber" float>
-                        </ons-input>
-                    </p>
-                    <p style="margin-top: 30px;">
-                        <ons-button style="background-color: darkgreen">Confirm</ons-button> <ons-button style="background-color: darkred">Cancel</ons-button>
-                    </p>
-                    </div>
-
-                </div>
-</body>
-
-</html>
+        </div>
+        <style>
+            #register .page__background {
+                background-color: chartreuse;
+            }
+        </style>
+</ons-page>
