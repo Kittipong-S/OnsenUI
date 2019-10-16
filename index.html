@@ -1,45 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>App</title>
-    
-    <script src="lib/onsen/js/onsenui.js"></script>
-    <script src="lib/jquery/jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">
-    <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
- 
-</head>
-
-<body>
-    <ons-navigator id="myNavigator" page="splitter.html">
-    </ons-navigator>
-
-    <!-- Second navigation component: Splitter. This will disappear if the first component changes its content. -->
-    <template id="splitter.html">
-        <ons-page>
-            <ons-splitter id="mySplitter">
-                <!-- <ons-splitter-side id="sidemenu" page="login.html" swipeable width="250px" collapse
-                    swipe-target-width="50px">
-                </ons-splitter-side> -->
+<ons-page id="loginPage">
+    <style>
+                #loginpage
+                .page__background { background-color: brown;}
+                
+                </style>
+    <div style="text-align: center; margin-top: 150px;">
+        <div class="card">
 
 
-                <ons-splitter-content page="login.html" id="content">
-                </ons-splitter-content>
-               
-            </ons-splitter>
-        </ons-page>
-    </template>
+            <div style="text-align: center; margin-top: 30px;">
+                <h2>Login</h2>
+                <p>
+                    <ons-input id="username" modifier="underbar" placeholder="Username" float></ons-input>
+                </p>
+                <p>
+                    <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float>
+                    </ons-input>
+                </p>
+                <p style="margin-top: 30px;">
+                    <ons-button style="background-color: seagreen">Sign in</ons-button>
+                    <ons-button  id="register" style="background-color: coral" >Register</ons-button>
+                </p>
+                <div>
+                    <p> OR </p>
+                </div>
+                <section style="padding: 8px">
+                    <ons-button id="gmailbtn" style="background-color: red" modifier="large">Gmail</ons-button>
+                </section>
 
+            </div>
+        </div>
+    </div>
 
-    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
-    <!-- <script src="http://code.jquery.com/jquery-1.11.1.js"></script> -->
-    <script src="app.js"></script>
-</body>
-
-</html>
+</ons-page>
