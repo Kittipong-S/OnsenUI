@@ -17,74 +17,104 @@ firebase.analytics();
 var provider = new firebase.auth.GoogleAuthProvider();
 $('#gmailbtn').click(function () {
   console.log("wasd");
-  
+
 });
 
 document.addEventListener('init', function (event) {
 
   var page = event.target;
 
-  if (page.id === 'menuPage') {
-    console.log("menuPage");
 
-    $("#menubtn").click(function () {
-      $("#sidemenu")[0].open();
+
+
+
+  //<-----------------login----------------->
+
+  if (page.id === 'toolPage') {
+    console.log("tooPage");
+
+    $("#login").click(function () {
+      $("#content")[0].load("login.html");
+      $("#sidemenu")[0].close();
     });
+
+    $("#home").click(function () {
+      $("#content")[0].load("menu.html");
+      $("#sidemenu")[0].close();
+    });
+
   }
-//<-----------------login----------------->
-
-if (page.id === 'loginPage') {
-console.log("loginPage");
-$("#register").click(function () {
-  $("#content")[0].load("register.html");
-});
-}
-
-
-if (page.id === 'register') {
-console.log("register");
-$("#cancel").click(function () {
-  $("#content")[0].load("login.html");
-});
-}
 
 
 
+  if (page.id === 'register') {
+    console.log("register");
+    $("#cancel").click(function () {
+      $("#content")[0].load("login.html");
+    });
+
+    $("#regis").click(function () {
+      var firstname = document.getElementById('fname');
+      var lastname = document.getElementById('lname');
+      var email = document.getElementById('email');
+      var password = document.getElementById('password');
+      var Confirmpassword = document.getElementById('conFpassword');
+      var phonenumber = document.getElementById('phone');
+      insertData(fname.value, lname.value, email.value, password.value, conFpassword.value, phone.value)
+    
+    });
+    
+    function insertData(fname,lname, email, password, confpassword, phone){
+      var firebaseRef = firebase.database().ref("users");
+      firebaseRef.push({
+        firstname: fname,
+        lastname: lname,
+        email: email,
+        password: password,
+        Confirmpassword: confpassword,
+        phonenumber: phone
+      });
+    console.log("Insert Success")
+    }
+  }
+
+
+  if (page.id === 'loginPage') {
     $("#gmailbtn").click(function () {
 
       console.log("Google");
 
       firebase.auth().signInWithPopup(provider).then(function (result) {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          var token = result.credential.accessToken;
-          // The signed-in user info.
-          var user = result.user;
-          // ...
-          $("#content")[0].load("menu.html");
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+        $("#content")[0].load("menu.html");
       }).catch(function (error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // The email of the user's account used.
-          var email = error.email;
-          // The firebase.auth.AuthCredential type that was used.
-          var credential = error.credential;
-          // ...
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
       });
     });
+
+    $("#register").click(function () {
+      $("#content")[0].load("register.html");
+    });
+  }
+
+
+
   
 
-    if (page.id === 'menuPage') {
-      console.log("menuPage");
-  
-      $("#login").click(function () {
-        $("#content")[0].load("login.html");
-        $("#sidemenu")[0].close();
-      });
-  
-      $("#home").click(function () {
-        $("#content")[0].load("menu.html");
-        $("#sidemenu")[0].close();
-      });
-    }
+
+
+
+
+
 });
