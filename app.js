@@ -24,62 +24,26 @@ document.addEventListener('init', function (event) {
 
   var page = event.target;
 
-
-
-
-
   //<-----------------login----------------->
 
-  if (page.id === 'toolPage') {
-    console.log("tooPage");
-
-    $("#login").click(function () {
-      $("#content")[0].load("login.html");
-      $("#sidemenu")[0].close();
-    });
-
-    $("#home").click(function () {
-      $("#content")[0].load("menu.html");
-      $("#sidemenu")[0].close();
-    });
-
-  }
-
-
-
-  if (page.id === 'register') {
-    console.log("register");
-    $("#cancel").click(function () {
-      $("#content")[0].load("login.html");
-    });
-
-    $("#regis").click(function () {
-      var firstname = document.getElementById('fname');
-      var lastname = document.getElementById('lname');
-      var email = document.getElementById('email');
-      var password = document.getElementById('password');
-      var Confirmpassword = document.getElementById('conFpassword');
-      var phonenumber = document.getElementById('phone');
-      insertData(fname.value, lname.value, email.value, password.value, conFpassword.value, phone.value)
-    
-    });
-    
-    function insertData(fname,lname, email, password, confpassword, phone){
-      var firebaseRef = firebase.database().ref("users");
-      firebaseRef.push({
-        firstname: fname,
-        lastname: lname,
-        email: email,
-        password: password,
-        Confirmpassword: confpassword,
-        phonenumber: phone
-      });
-    console.log("Insert Success")
-    }
-  }
-
-
   if (page.id === 'loginPage') {
+
+
+
+    $("#login1").click(function () {
+      var username = $("#username").val();
+      var password = $("#password").val();
+      firebase.auth().signInWithEmailAndPassword(username, password).then(function () {
+        $("#content")[0].load("menu.html");
+        $("#sidemenu")[0].close();
+      }).catch(function (error) {
+        console.log(error.message);
+
+      });
+      console.log(username);
+    });
+
+
     $("#gmailbtn").click(function () {
 
       console.log("Google");
@@ -106,15 +70,66 @@ document.addEventListener('init', function (event) {
     $("#register").click(function () {
       $("#content")[0].load("register.html");
     });
+
+
+  }
+
+
+  if (page.id === 'toolPage') {
+    console.log("tooPage");
+
+    $("#login").click(function () {
+      $("#content")[0].load("login.html");
+      $("#sidemenu")[0].close();
+    });
+
+    $("#home").click(function () {
+      $("#content")[0].load("menu.html");
+      $("#sidemenu")[0].close();
+    });
+
   }
 
 
 
-  
+
+  if (page.id === 'register') {
+    console.log("register");
+    $("#cancel").click(function () {
+      $("#content")[0].load("login.html");
+      $("#sidemenu")[0].close();
+    });
+    
+    $("#register1").click(function () {
+       db.collection("users").doc().set({
+        firstname: document.getElementById('fname').value,
+        lastname: document.getElementById('lname').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value,
+        Confirmpassword: document.getElementById('conFpassword').value,
+        phonenumber: document.getElementById('phone').value
 
 
+      })
+        .then(function () {
+          console.log("Document successfully written!");
+
+        }).catch(function (error) {
+          console.log("Error Writing document: ", error);
+        });
 
 
-
-
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode === 'auth/weak-password') {
+          alert('The password is too weak')
+        } else {
+          alert(errorMessage);
+        }
+      });   
+     });
+  }
 });
