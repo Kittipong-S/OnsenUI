@@ -12,7 +12,7 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+var db = firebase.firestore();
 
 var provider = new firebase.auth.GoogleAuthProvider();
 $('#gmailbtn').click(function () {
@@ -38,7 +38,7 @@ document.addEventListener('init', function (event) {
         $("#sidemenu")[0].close();
       }).catch(function (error) {
         console.log(error.message);
-
+        alert("Please enter your email and password!");
       });
       console.log(username);
     });
@@ -79,8 +79,15 @@ document.addEventListener('init', function (event) {
     console.log("tooPage");
 
     $("#login").click(function () {
-      $("#content")[0].load("login.html");
-      $("#sidemenu")[0].close();
+      console.log("logout!");
+      firebase.auth().signOut().then(function () {
+        $("#content")[0].load("login.html");
+        $("#sidemenu")[0].close();
+        alert("Logged out!");
+      }).catch(function (error) {
+
+      });
+
     });
 
     $("#home").click(function () {
@@ -99,9 +106,9 @@ document.addEventListener('init', function (event) {
       $("#content")[0].load("login.html");
       $("#sidemenu")[0].close();
     });
-    
+
     $("#register1").click(function () {
-       db.collection("users").doc().set({
+      db.collection("users").doc().set({
         firstname: document.getElementById('fname').value,
         lastname: document.getElementById('lname').value,
         email: document.getElementById('email').value,
@@ -113,6 +120,9 @@ document.addEventListener('init', function (event) {
       })
         .then(function () {
           console.log("Document successfully written!");
+          alert("Success!");
+          $("#content")[0].load("login.html");
+          $("#sidemenu")[0].close();
 
         }).catch(function (error) {
           console.log("Error Writing document: ", error);
@@ -129,7 +139,7 @@ document.addEventListener('init', function (event) {
         } else {
           alert(errorMessage);
         }
-      });   
-     });
+      });
+    });
   }
 });
