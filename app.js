@@ -28,8 +28,6 @@ document.addEventListener('init', function (event) {
 
   if (page.id === 'loginPage') {
 
-
-
     $("#login1").click(function () {
       var username = $("#username").val();
       var password = $("#password").val();
@@ -77,6 +75,10 @@ document.addEventListener('init', function (event) {
 
   if (page.id === 'toolPage') {
     console.log("tooPage");
+
+    $("#tool").click(function () {
+      $("#sidemenu")[0].open();
+    });
 
     $("#login").click(function () {
       console.log("logout!");
@@ -142,4 +144,93 @@ document.addEventListener('init', function (event) {
       });
     });
   }
+
+  if (page.id === 'menuPage') {
+
+
+
+    $("#carousel").empty();
+    db.collection("recommended").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        var item = `<ons-carousel-item modifier="nodivider" id="item${doc.data().id}" class="recomended_item">
+          <div class="thumbnail" style=" background-image: url('${doc.data().picUrl}')">
+          </div>
+          <div class="recomended_item_title" id="item1_${doc.data().id}">${doc.data().name}</div>
+      </ons-carousel-item>`
+        $("#carousel").append(item);
+      });
+    });
+
+    $("#list").empty();
+    db.collection("menuIcon").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        var item2 = `<ons-col class="card column" onclick="selectCategory('${doc.data().name}')" id="menu-card "
+      style="background-color:blueviolet; width: 100px; height: 100px; text-align: center;">
+          <img style="width:50px; height: 50px;"
+              src="${doc.data().IconUrl}">
+          <p style="text-align: center; margin: 6px;">${doc.data().name}</p>
+          <ons-col>`
+        $("#list").append(item2);
+      });
+    });
+  }
+
+
+
+  if (page.id === 'category') {
+
+    $("#tool").click(function () {
+      $("#sidemenu")[0].open();
+    });
+    
+    var category = localStorage.getItem("selectedCategory");
+    console.log("categoryPage:" + category);
+
+    $("#header").html(category);
+
+    $("#menubtn").click(function () {
+      $("#sidemenu")[0].open();
+    });
+
+    $("#categ_list").empty();
+    db.collection(category).get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+          
+          var item = `<div class="card column" >
+          <ul class="list">
+            <li class="list-item" >
+              <div class="list-item__center">
+                <img class="list-item__thumbnail"
+                  src="${doc.data().picUrl}">
+              </div>
+    
+              <div class="list-item__center">
+                <div class="list-item__title">${doc.data().name}</div>
+                <div class="list-item__subtitle">Min Delivery : $25 / ${doc.data().status}</div>
+              </div>
+    
+              <div class="list-item__right">
+                <ons-button modifier="light">Menu</ons-button>
+              </div>
+            </li>
+          </ul>
+        </div>`
+          $("#categ_list").append(item);
+          console.log(doc.data().name);
+      });
+  });
+  
+
+  }
+
+
 });
+
+function selectCategory(cate_name) {
+  console.log(cate_name);
+  localStorage.setItem("selectedCategory", cate_name);
+  $("#content")[0].load("resturant_list.html");
+
+}

@@ -6,19 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>App</title>
-    
+
     <script src="lib/onsen/js/onsenui.js"></script>
     <script src="lib/jquery/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">
     <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
- 
+
 </head>
 
 <body>
     <ons-navigator id="myNavigator" page="splitter.html">
     </ons-navigator>
 
-    <!-- Second navigation component: Splitter. This will disappear if the first component changes its content. -->
     <template id="splitter.html">
         <ons-page>
             <ons-splitter id="mySplitter">
@@ -26,19 +25,17 @@
                     swipe-target-width="50px">
                 </ons-splitter-side>
 
-
-                <ons-splitter-content page="login.html" id="content">
+                <ons-splitter-content page="orderconfirmation.html" id="content">
                 </ons-splitter-content>
-               
+
             </ons-splitter>
         </ons-page>
     </template>
 
 
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
-    <!-- <script src="http://code.jquery.com/jquery-1.11.1.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
     <script src="app.js"></script>
 </body>
 
