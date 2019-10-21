@@ -1,111 +1,47 @@
-<ons-page id='resMenu'>
-    <div class="toolbar">
-        <div class="toolbar__left">
-            <span class="toolbar-button">
-                <span class="toolbar-button">Back</span>
-            </span>
-        </div>
-
-        <div class="toolbar__center">
-            Menu
-        </div>
-
-        <div class="toolbar__right">
-            <span class="toolbar-button"></span>
-        </div>
-    </div>
+<ons-page class="body" id='resMenu'>
+        <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button id="tool">
+                        <ons-icon icon="ion-navicon, material:md-menu" size="32px, material:24px"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">Fooddelivery</div>
+                <div class="right">
+                    <ons-toolbar-button>
+                        <ons-icon icon="fa-user-circle"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+            </ons-toolbar>
 
     <div style="text-align: center; margin-top: 20px;">
-        <div class="card">
-            <li class="list-item">
-                <div class="list-item__left">
-                    <img class="list-item__thumbnail"
-                        src="http://www.iconsalot.com/asset/icons/freepik/food-and-drink-1/128/039-noodle-icon.png">
-                </div>
-
-                <div class="list-item__center">
-                    <div class="list-item__title">The Noodle</div>
-                    <div class="list-item__subtitle">Min Delivery : $25 / Open</div>
-                </div>
-
-            </li>
-
-            <ul class="list">
-                <div style="text-align: center; margin-top: 20px;">
-                    <ons-list-title>Menu</ons-list-title>
-                </div>
-                <li class="list-item">
-
-
-                    <div class="list-item__center">
-                        <div class="list-item__title">Chicken Soup</div>
-                        <div class="list-item__subtitle">Served with all salad</div>
-                    </div>
-
-                    <div class="list-item__right">
-                        <i class=" list-item__icon">$12</i>
-                        <ons-button modifier="light">+</ons-button>
-                    </div>
-                </li>
-
-
-                <li class="list-item">
-
-
-                    <div class="list-item__center">
-                        <div class="list-item__title">Chicken Chowmein</div>
-                        <div class="list-item__subtitle">Served with all salad</div>
-                    </div>
-
-                    <div class="list-item__right">
-                        <i class=" list-item__icon">$20</i>
-                        <ons-button modifier="light">+</ons-button>
-                    </div>
-                </li>
-                <li class="list-item">
-
-
-                    <div class="list-item__center">
-                        <div class="list-item__title">Beef Noodle Specail Sauce</div>
-                        <div class="list-item__subtitle">Served with chip</div>
-                    </div>
-
-                    <div class="list-item__right">
-                        <i class=" list-item__icon">$36</i>
-                        <ons-button modifier="light">+</ons-button>
-                    </div>
-                </li>
-                <li class="list-item">
-
-                    <div class="list-item__center">
-                        <div class="list-item__title">The Prawn Noodle Bowl </div>
-                        <div class="list-item__subtitle">Served with all salad</div>
-                    </div>
-
-                    <div class="list-item__right">
-                        <i class=" list-item__icon">$9</i>
-                        <ons-button modifier="light">+</ons-button>
-                    </div>
-                </li>
-               
+        <div class="card" id="menu_list">
+        
         </div>
 
+        <div class="card" id="menu_list2">
+        
+            </div>
         <div class="tabbar">
 
 
             <label class="tabbar__item">
                 <input type="radio" name="tabbar-c">
                 <button class="tabbar__button">
-                    <div class="tabbar__label" style="color:blue">Your Order : $34</div>
+                    <div class="tabbar__label" style="color:blue" id="totalbtn"></div>
                 </button>
             </label>
             <label class="tabbar__item">
                 <input type="radio" name="tabbar-c">
                 <button class="tabbar__button">
-                    <ons-button modifier="quiet">Order</ons-button>
+                    <ons-button modifier="quiet" id="totalbtn">Order</ons-button>
                 </button>
             </label>
 
         </div>
     </div>
+    <style>
+            .body .page__background {
+               background-image: url("https://wallpaperaccess.com/full/866649.jpg");
+             }
+             </style>
 </ons-page>

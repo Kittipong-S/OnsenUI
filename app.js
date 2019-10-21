@@ -24,6 +24,9 @@ document.addEventListener('init', function (event) {
 
   var page = event.target;
 
+
+
+
   //<-----------------login----------------->
 
   if (page.id === 'loginPage') {
@@ -182,7 +185,7 @@ document.addEventListener('init', function (event) {
     $("#tool").click(function () {
       $("#sidemenu")[0].open();
     });
-    
+
     var category = localStorage.getItem("selectedCategory");
     console.log("categoryPage:" + category);
 
@@ -193,12 +196,12 @@ document.addEventListener('init', function (event) {
     });
 
     $("#categ_list").empty();
-    db.collection(category).get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
-          
-          var item = `<div class="card column" >
+    db.collection(category).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+
+        var item = `<div class="card column" >
           <ul class="list">
             <li class="list-item" >
               <div class="list-item__center">
@@ -208,22 +211,129 @@ document.addEventListener('init', function (event) {
     
               <div class="list-item__center">
                 <div class="list-item__title">${doc.data().name}</div>
-                <div class="list-item__subtitle">Min Delivery : $25 / ${doc.data().status}</div>
+                <div class="list-item__subtitle">Min Delivery : $${doc.data().min} / ${doc.data().status}</div>
               </div>
     
               <div class="list-item__right">
-                <ons-button modifier="light">Menu</ons-button>
+                <ons-button modifier="light" onclick="selectMenu('${doc.data().id}')">Menu</ons-button>
               </div>
             </li>
           </ul>
         </div>`
-          $("#categ_list").append(item);
-          console.log(doc.data().name);
+        $("#categ_list").append(item);
+        console.log(doc.data().name);
       });
-  });
-  
+    });
+
 
   }
+
+  if (page.id === 'resMenu') {
+
+    $("#tool").click(function () {
+      $("#sidemenu")[0].open();
+    });
+    var category = localStorage.getItem("selectedCategory");
+    var resturantMenu = localStorage.getItem("selectedMenu");
+    console.log("categoryPage:" + category);
+
+    db.collection(category).where("id", "==", resturantMenu).get()
+      .then(function (querySnapshot) {
+        console.log(resturantMenu);
+        console.log(category);
+        querySnapshot.forEach(function (doc) {
+          // doc.data() is never undefined for query doc snapshots
+
+          var item = `
+    <div>
+    <div>
+            <li class="list-item">
+                <div class="list-item__left">
+                    <img class="list-item__thumbnail"
+                        src="${doc.data().picUrl}">
+                </div>
+
+                <div class="list-item__center">
+                    <div class="list-item__title">${doc.data().name}</div>
+                    <div class="list-item__subtitle">Min Delivery : $${doc.data().min} / Open</div>
+                </div>
+
+            </li>
+            </div>
+<div>`
+
+          $("#menu_list").append(item);
+
+          var menu = doc.data().menus;
+          for (let index = 0; index < menu.length; index++) {
+            var menus2 = menu[index];
+            var item = `
+            <ul class="list">
+                <div style="text-align: center; margin-top: 20px;">
+                </div>
+                <li class="list-item">
+                    <div class="list-item__center">
+                        <div class="list-item__title">${menus2.mname}</div>
+                        <div class="list-item__subtitle">${menus2.detail}</div>
+                    </div>
+
+                    <div class="list-item__right">
+                        <i class=" list-item__icon">$${menus2.mprice}</i>
+                        <ons-button modifier="light" onclick="gettotal('${menus2.mname}','${menus2.mprice}')">+</ons-button>
+                    </div>
+                </li>
+            </div>`
+            $("#menu_list2").append(item);
+            console.log(doc.data().name);
+          }
+        });
+      });
+
+  }
+
+  if (page.id === 'orderpage') {
+
+    $("#order").click(function () {
+      if (getitem.length == 0) {
+        ons.notification.alert("Can't pass, you have 0 menu in order");
+      } else
+        $("#content")[0].load("order.html");
+    });
+  }
+
+  var category = localStorage.getItem("selectedCategory");
+  var resturantMenu = localStorage.getItem("selectedMenu");
+  db.collection(category).where("id", "==", resturantMenu).get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+          var item = `<ons-row>
+          <ons-col class="card" id="menu-card" style="width: 150px; height: 130px; text-align: center;">
+              <img style="width:50px; height: 50px;"
+                  src="${doc.data().picUrl}">
+              <div>
+                  <div class="list-item__title">${doc.data().name}</div>
+                  <div class="list-item__subtitle">Your Order is below</div>
+              </div>
+          </ons-col>
+      </ons-row>`;
+          $('#order').append(item);
+    
+      });
+    });
+
+  //   for (var i = 0; i < getitem.length; i++) {
+  //     var show_OrderMenu = `<ons-col width=20%>&emsp;` + (1) + `</ons-col>
+  //     <ons-col width=50%>- `+ getitem[i] + `</ons-col>&emsp;&emsp; 
+  //     <ons-col width=20%>`+ getprice[i] + `</ons-col>`;
+  //     $("#orderMenu").append(show_OrderMenu);
+    
+
+
+
+
+
+
+
+  // }
 
 
 });
@@ -233,4 +343,32 @@ function selectCategory(cate_name) {
   localStorage.setItem("selectedCategory", cate_name);
   $("#content")[0].load("resturant_list.html");
 
+}
+
+function selectMenu(menu_name) {
+  console.log(menu_name);
+  localStorage.setItem("selectedMenu", menu_name);
+  $("#content")[0].load("resturant_menu.html");
+
+}
+
+var getcost = [];
+var getfood = [];
+var price = parseInt(0);
+
+
+
+function gettotal(mname, mprice,) {
+  console.log(mname);
+  console.log(mprice);
+  price += parseInt(mprice);
+  getfood.push(mname);
+  getcost.push(mprice);
+  console.log("total = " + price);
+  // window.alert("Add to cart success!");
+
+  document.getElementById('totalbtn').innerText = "Total = " + price + " $";
+  $("#totalbtn").click(function () {
+    $("#content")[0].load("orderconfirmation.html");
+  });
 }
