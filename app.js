@@ -311,10 +311,44 @@ document.addEventListener('init', function (event) {
   if (page.id === 'orderpage') {
 
     $("#back").click(function () {
+      getname = [];
+      getprice = [];
+      totalprice = 0;
+      price = parseInt(0);
+      alert("Success!")
       $("#content")[0].load("menu.html");
       $("#sidemenu")[0].close();
     });
   
+    $("#back1").click(function () {
+      getname = [];
+      getprice = [];
+      totalprice = 0;
+      price = parseInt(0);
+      alert("Success!")
+      $("#content")[0].load("menu.html");
+      $("#sidemenu")[0].close();
+    });
+
+    $("#back2").click(function () {
+      getname = [];
+      getprice = [];
+      totalprice = 0;
+      price = parseInt(0);
+      alert("Success!")
+      $("#content")[0].load("menu.html");
+      $("#sidemenu")[0].close();
+    });
+
+    $("#back3").click(function () {
+      getname = [];
+      getprice = [];
+      totalprice = 0;
+      price = parseInt(0);
+      alert("Success!")
+      $("#content")[0].load("menu.html");
+      $("#sidemenu")[0].close();
+    });
 
     $("#tool").click(function () {
       $("#sidemenu")[0].open();
