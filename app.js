@@ -34,6 +34,7 @@ document.addEventListener('init', function (event) {
     $("#login1").click(function () {
       var username = $("#username").val();
       var password = $("#password").val();
+      
       firebase.auth().signInWithEmailAndPassword(username, password).then(function () {
         $("#content")[0].load("menu.html");
         $("#sidemenu")[0].close();
@@ -42,6 +43,8 @@ document.addEventListener('init', function (event) {
         alert("Please enter your email and password!");
       });
       console.log(username);
+
+      localStorage.setItem("username",username);
     });
 
 
@@ -73,6 +76,8 @@ document.addEventListener('init', function (event) {
     });
 
 
+    
+
   }
 
 
@@ -83,16 +88,17 @@ document.addEventListener('init', function (event) {
       $("#sidemenu")[0].open();
     });
 
-    $("#login").click(function () {
-      console.log("logout!");
+    $("#logout").click(function () {
+      console.log('logoutbtn pressed');
+  
+      $("#sidemenu")[0].close();
       firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+        ons.notification.alert("Logout Sucess !");
         $("#content")[0].load("login.html");
-        $("#sidemenu")[0].close();
-        alert("Logged out!");
       }).catch(function (error) {
-
+        // An error happened.
       });
-
     });
 
     $("#home").click(function () {
@@ -125,14 +131,12 @@ document.addEventListener('init', function (event) {
       })
         .then(function () {
           console.log("Document successfully written!");
-          alert("Success!");
           $("#content")[0].load("login.html");
           $("#sidemenu")[0].close();
-
         }).catch(function (error) {
           console.log("Error Writing document: ", error);
         });
-
+       
 
       var email = document.getElementById('email').value;
       var password = document.getElementById('password').value;
@@ -150,6 +154,9 @@ document.addEventListener('init', function (event) {
 
   if (page.id === 'menuPage') {
 
+ $("#tool").click(function () {
+      $("#sidemenu")[0].open();
+    });
 
 
     $("#carousel").empty();
@@ -165,7 +172,7 @@ document.addEventListener('init', function (event) {
     });
 
     $("#list").empty();
-    db.collection("menuIcon").get().then((querySnapshot) => {
+    db.collection("menuIcon").orderBy("id", "asc").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         var item2 = `<ons-col class="card column" onclick="selectCategory('${doc.data().name}')" id="menu-card "
       style="background-color:blueviolet; width: 100px; height: 100px; text-align: center;">
@@ -233,6 +240,16 @@ document.addEventListener('init', function (event) {
     $("#tool").click(function () {
       $("#sidemenu")[0].open();
     });
+    $("#orderC").click(function () {
+      if (getname.length == 0) {
+        ons.notification.alert("Can't pass, you have 0 menu in order");
+      } else
+        $("#content")[0].load("orderconfirmation.html");
+    });
+
+    $("#tool").click(function () {
+      $("#sidemenu")[0].open();
+    });
     var category = localStorage.getItem("selectedCategory");
     var resturantMenu = localStorage.getItem("selectedMenu");
     console.log("categoryPage:" + category);
@@ -264,13 +281,13 @@ document.addEventListener('init', function (event) {
 
           $("#menu_list").append(item);
 
+         
           var menu = doc.data().menus;
           for (let index = 0; index < menu.length; index++) {
             var menus2 = menu[index];
             var item = `
             <ul class="list">
                 <div style="text-align: center; margin-top: 20px;">
-                </div>
                 <li class="list-item">
                     <div class="list-item__center">
                         <div class="list-item__title">${menus2.mname}</div>
@@ -293,13 +310,15 @@ document.addEventListener('init', function (event) {
 
   if (page.id === 'orderpage') {
 
-    $("#order").click(function () {
-      if (getitem.length == 0) {
-        ons.notification.alert("Can't pass, you have 0 menu in order");
-      } else
-        $("#content")[0].load("order.html");
+    $("#back").click(function () {
+      $("#content")[0].load("menu.html");
+      $("#sidemenu")[0].close();
     });
-  }
+  
+
+    $("#tool").click(function () {
+      $("#sidemenu")[0].open();
+    });
 
   var category = localStorage.getItem("selectedCategory");
   var resturantMenu = localStorage.getItem("selectedMenu");
@@ -320,21 +339,28 @@ document.addEventListener('init', function (event) {
       });
     });
 
-  //   for (var i = 0; i < getitem.length; i++) {
-  //     var show_OrderMenu = `<ons-col width=20%>&emsp;` + (1) + `</ons-col>
-  //     <ons-col width=50%>- `+ getitem[i] + `</ons-col>&emsp;&emsp; 
-  //     <ons-col width=20%>`+ getprice[i] + `</ons-col>`;
-  //     $("#orderMenu").append(show_OrderMenu);
+    for (var i = 0; i < getname.length; i++) {
+      var show_OrderMenu = `<div >
+      <li class="list-item">
+          <div class="list-item__center">
+              <div class="list-item__title">`+getname[i]+`</div>
+          </div>
+          <div class="list-item__right">
+              <i>$`+getprice[i]+`</i>
+          </div>
+      </li>`;
+      $("#orderMenu").append(show_OrderMenu);
     
 
 
+  }
+  var totalprice = localStorage.getItem("totalprice");
+  $("#totalP").append(totalprice);
+
+  
 
 
-
-
-
-  // }
-
+}
 
 });
 
@@ -352,8 +378,8 @@ function selectMenu(menu_name) {
 
 }
 
-var getcost = [];
-var getfood = [];
+var getprice = [];
+var getname = [];
 var price = parseInt(0);
 
 
@@ -362,13 +388,18 @@ function gettotal(mname, mprice,) {
   console.log(mname);
   console.log(mprice);
   price += parseInt(mprice);
-  getfood.push(mname);
-  getcost.push(mprice);
+  getname.push(mname);
+  getprice.push(mprice);
   console.log("total = " + price);
   // window.alert("Add to cart success!");
-
+  localStorage.setItem("totalprice", price);
   document.getElementById('totalbtn').innerText = "Total = " + price + " $";
   $("#totalbtn").click(function () {
-    $("#content")[0].load("orderconfirmation.html");
   });
 }
+
+
+
+
+
+;

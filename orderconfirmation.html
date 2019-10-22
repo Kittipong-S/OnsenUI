@@ -1,65 +1,31 @@
-<ons-page id='orderpage'>
-    <div class="toolbar">
-        <div class="toolbar__left">
-            <span class="toolbar-button">
-                <span class="toolbar-button">Back</span>
-            </span>
+<ons-page id='orderpage' class="body">
+    <ons-toolbar>
+        <div class="left">
+            <ons-toolbar-button id="tool">
+                <ons-icon icon="ion-navicon, material:md-menu" size="32px, material:24px"></ons-icon>
+            </ons-toolbar-button>
         </div>
-
-        <div class="toolbar__center">
-            Confirm
+        <div class="center">Fooddelivery</div>
+        <div class="right">
+            <ons-toolbar-button>
+                <ons-icon icon="fa-user-circle"></ons-icon>
+            </ons-toolbar-button>
         </div>
-
-        <div class="toolbar__right">
-            <span class="toolbar-button"></span>
-        </div>
-    </div>
+    </ons-toolbar>
     <div id="order">
-    <!-- <ons-row>
-        <ons-col class="card" id="menu-card" style="width: 150px; height: 130px; text-align: center;">
-            <img style="width:50px; height: 50px;"
-                src="http://www.iconsalot.com/asset/icons/freepik/food-and-drink-1/128/039-noodle-icon.png">
-            <div>
-                <div class="list-item__title">The Noodle</div>
-                <div class="list-item__subtitle">Your Order is below</div>
-            </div>
-        </ons-col>
-    </ons-row> -->
+  
     </div>
-    <div style="height: 200px; padding: 1px 0 0 0;">
-        <li class="list-item">
-            <div class="list-item__center">
-                <div class="list-item__title">1.Chicken Chowmein</div>
-            </div>
-            <div class="list-item__right">
-                <i>$30</i>
-            </div>
-        </li>
-        <li class="list-item">
-            <div class="list-item__center">
-                <div class="list-item__title">2.Beef Stir Fry </div>
-            </div>
-            <div class="list-item__right">
-                <i>$10</i>
-            </div>
-        </li>
-        <li class="list-item">
-            <div class="list-item__center">
-                <div class="list-item__title">Soft Drinks(Coke)</div>
-            </div>
-            <div class="list-item__right">
-                <i>$8.5</i>
-            </div>
-        </li>
+    <div class="card" id="orderMenu">
+       
     </div>
     <section>
         <center>
-            <ons-text id="totalbtn"></ons-text>
+            <ons-text id="totalP">total = $ </ons-text>
         </center>
     </section>
     <section style="padding: 8px"></section>
     <center>
-        <ons-button modifier="">Enter coupon if you have any</ons-button>
+        <ons-button id="back">Enter coupon if you have any</ons-button>
     </center>
     </section>
     <center>
@@ -93,5 +59,9 @@
                                 #mypage .page__background {
                                     background-color: yellow
                                 }
+
+                                .body .page__background {
+          background-image: url("https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-simple-summer-refreshing-drink-background-image_232817.jpg");
+        }
                             </style>
 </ons-page>
