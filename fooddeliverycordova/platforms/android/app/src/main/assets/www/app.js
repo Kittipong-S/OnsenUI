@@ -106,8 +106,8 @@ document.addEventListener('init', function (event) {
       $("#sidemenu")[0].close();
     });
 
-    $("#map").click(function () {
-      $("#content")[0].load("address.html");
+    $("#mapbtn").click(function () {
+      document.querySelector('#myNavigator').pushPage('address.html');
       $("#sidemenu")[0].close();
     });
   }
